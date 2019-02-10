@@ -177,7 +177,7 @@ $e('ul', randomthoughts);
 
 **SELECT**
         
-The same thing happens with <select> element, all literal array items (if they are not DOM nodes) 
+The same thing happens with `<select>` element, all literal array items (if they are not DOM nodes) 
 will be wrapped in OPTION elements:
 
 ```javascript
