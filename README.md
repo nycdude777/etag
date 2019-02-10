@@ -1,4 +1,4 @@
-$e()
+#$e()
 
 A compact, portable, nestable, inline HTML (or any structure) generator helper for JavaScript.
     
@@ -142,7 +142,8 @@ AUTOMATIC LIST ITEMS
 
 <UL><OL>
 
-When you pass an array as content for a UL or OL element, $e() will automatically wrap each item in an <li> tag:
+When you pass an array as content for a UL or OL element, $e() will automatically 
+wrap each item in an <li> tag:
     
     $e('ul', randomthoughts);
                     
@@ -153,7 +154,8 @@ When you pass an array as content for a UL or OL element, $e() will automaticall
     
 <SELECT>
         
-Same thing happens with <select> element, all literal array items (if they are not DOM nodes) will be wrapped in OPTION elements:
+Same thing happens with <select> element, all literal array items (if they are not DOM nodes) 
+    will be wrapped in OPTION elements:
 
     $e('select', levels);
 
