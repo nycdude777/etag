@@ -5,42 +5,49 @@ A compact, portable, nestable, inline HTML (or any structure) generator helper f
 
 **Signature:** `$e(tagname, contentItem [, Item2, Item3, ItemN]);`
 
-**Usage** 
-
+**It lets you do simple things like this:** 
 ```javascript
-    let dynamicNode = $e('h1', 'Hello Mars!');
-    
-    parentNode.appendChild(dynamicNode);
+    parentNode.appendChild( $e('h1>', 'Hello Mars!') );
 ```
+```html
+    <!-- HTML representation of the newly added content -->
+    <h1>Hello Mars!</h1>
+``` 
+
+**or, more interesting things like this:**
+```javascript
+    let somearray = ['Finish code', 'Buy milk', 'Feed cat'];
+    let popup = $e('div.reminder onclick="snooze"', 
+                 $e('h1', 'To do'),
+                 $e('ol', things),
+                                
+    //show the pop-up later   
+```
+```html
+    <!-- result -->
+    <div class="reminder" onclick="snooze">
+        <h1>To do</h1>
+        <ol>
+            <li>Finish code</li>
+            <li>Buy milk</li>
+            <li>Feed cat</li>
+        </ol>
+    </div>
+``` 
+
+**easily!**
 
 
-QUICK GUIDE
+
+ABOUT
 -----------
 
 This is a useful helper for creating DOM nodes dynamically.  It will construct and return 
 a valid node from the supplied tag and content.  It supports shorthand notation, see examples below.
     
 Content will automatically be wrapped in the matching opening and closing tags of the parent element, 
-i.e. 
-
-usage:  
-
-```javascript
-
-```
-
-example:
-
-```javascript
-let container = document.getElementById('dynamic_content');
-container.appendChild( $e('div', 'My content') );
-```
-
 The outer html of the returned DOM node will be equivalent to:
 
-```html
-    <div>My content</div>    
-``` 
 
 
 MORE EXAMPLES
