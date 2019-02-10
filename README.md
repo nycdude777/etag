@@ -161,7 +161,7 @@ $e('ul', paragraphs.map((text)=>{ return $e('li', text); });
 AUTOMATIC LIST ITEMS
 --------------------
 
-##<UL><OL>
+**UL**, **OL**
 
 When you pass an array as content for a UL or OL element, $e() will automatically 
 wrap each item in an <li> tag:
@@ -169,13 +169,13 @@ wrap each item in an <li> tag:
 $e('ul', randomthoughts);
 ```
 ```
-    <ul> //or <ol>
+    <ul> 
         <li>I want to go to space</li>
         <li>What if there is no spoon?</li>
     </ul>
 ``` 
 
-##<SELECT>
+**SELECT**
         
 The same thing happens with <select> element, all literal array items (if they are not DOM nodes) 
 will be wrapped in OPTION elements:
