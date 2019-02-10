@@ -37,19 +37,19 @@ MORE EXAMPLES
     
 you can include raw html as content:
 
-```
+```javascript
 $e('div', '<h1>Big and bold</h1>')                
 ```
-```
+```html
    <div><h1>Big and bold</h1></div>
 ```
 
 or use the output of another $e() as content:
 
-```
+```javascript
 $e('div', $e('span','Label'))                                   
 ```
-```
+```html
     <div><span>Label</span></div>
 ```
 
@@ -57,31 +57,31 @@ decorate elements as you pass them:
     
 with CSS classes:
 
-```        
+```javascript        
 $e('div.square', 'I am fair and square')                            
 ```
-```
+```html
     <div class="square">I am fair and square</div>
 ```
 
 or multiple classes:
-```
+```javascript
 $e('div.square.clearfix', 'I am fair but I like my space')                        
 ```
-```
+```html
     <div class="square">I am fair but I like my space</div>
 ```
 
 pass attributes with values:
-```
+```javascript
 $e('div.square onclick="alert('Stop it!')"', 'Do not click me')     
 ```
-```
+```html
     <div class="square" onclick="alert('Stop it!')">Do not click me</div>
 ```
 
 mix raw html and other $e() tags:
-```
+```javascript
 $e('section', 
     '<h1>Welcome</h1>', 
     $e('p', 
@@ -89,7 +89,7 @@ $e('section',
     )
 )
 ```
-```
+```html
     <section>
         <h1>Welcome</h1>
         <p>$e supports multiple params which become sibling elements inside the parent tag</p>
@@ -97,7 +97,7 @@ $e('section',
 ```
 
 using multiple nested $e tags 
-```    
+```javascript
 $e('section', 
     $e('ul', 
         $e('li', 'Option 1'),
@@ -106,7 +106,7 @@ $e('section',
     )
 );
 ```
-```
+```html
     <section>
         <ul>
             <li>Option 1</li>
@@ -145,10 +145,10 @@ $e('section', paragraphs.map(function(text) {
 
 or create those same items as a list (and use an arrow function too):
 
-```
+```javascript
 $e('ul', paragraphs.map((text)=>{ return $e('li', text); });
 ```
-```
+```html
     <ul>
         <li>Lorem ipsum dolor sit amet, agam assentior ei vel.</li>
         <li>Eu sea regione vocibus ullamcorper, mea facer accumsan volutpat ne.</li>
@@ -165,10 +165,10 @@ AUTOMATIC LIST ITEMS
 
 When you pass an array as content for a UL or OL element, $e() will automatically 
 wrap each item in an <li> tag:
-```  
+```javascript
 $e('ul', randomthoughts);
 ```
-```
+```html
     <ul> 
         <li>I want to go to space</li>
         <li>What if there is no spoon?</li>
@@ -180,16 +180,16 @@ $e('ul', randomthoughts);
 The same thing happens with <select> element, all literal array items (if they are not DOM nodes) 
 will be wrapped in OPTION elements:
 
-```
+```javascript
 $e('select', levels);
 ```
-```
+```html
     <select> 
         <option>Level 1</option>
         <option>Level 2</option>
     </select>
 ``` 
-> NOTE: This needs to be extended to support specifying selected item, if not map() can be used
+**NOTE**: *This needs to be extended to support specifying selected item, if not map() can be used*
     
 
 
@@ -197,7 +197,7 @@ DEEPLY NESTED ITERATION
 -----------------------
 
 You can also create nested structures using a shorthand stack notation:
-```
+```javascript
 $e('section > div > ul', itemArray)  
 ```
 
@@ -205,7 +205,7 @@ This will generate a nested structure, with only the last element being repeated
     
 `section>div>ul` is a stack that will result in the following HTML equivalent:
 
-```
+```html
 <section>
     <div>
         <ul>
