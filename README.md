@@ -2,7 +2,18 @@ $e()
 ====
 
 A compact, portable, nestable, inline HTML (or any structure) generator helper for JavaScript.
+
+**Signature:** `$e(tagname, contentItem [, Item2, Item3, ItemN]);`
+
+**Usage** 
+
+```
+    let dynamicNode = $e('h1', 'Hello Mars!');
     
+    parentNode.appendChild(dynamicNode);
+```
+
+
 QUICK GUIDE
 -----------
 
@@ -15,7 +26,7 @@ i.e.
 usage:  
 
 ```javascript
-let newDomNode = $e(tagname, contentItem [, Item2, Item3, ItemN]);
+
 ```
 
 example:
