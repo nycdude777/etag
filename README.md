@@ -9,7 +9,7 @@ A compact, portable, nestable, inline HTML (or any structure) generator helper f
     parentNode.appendChild( $e('h1>', 'Hello Mars!') );
 ```
 ```html
-    <!-- HTML representation of the newly added content -->
+    <!-- HTML -->
     <h1>Hello Mars!</h1>
 ``` 
 
