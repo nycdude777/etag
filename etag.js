@@ -1,39 +1,9 @@
-
 var $e = function (tag, content) {
-    var parseName = function (input) {
-        var m = /^([a-zA-Z0-9]+?)($|\#|\s|\n|\.)/.exec(input);
-        var result;
-        if (m && m.length > 0) {
-            result = m[1];
-        }
-        else {
-            result = undefined;
-        }
-        return result;
-    };
-    var parseId = function (input) {
-        var m = /^\S+?\#(\S+?)[\.\s$]/.exec(input);
-        var result;
-        if (m && m.length > 0) {
-            result = m[1];
-        }
-        else {
-            result = undefined;
-        }
-        return result;
-    };
-    var parseClass = function (input) {
-        var m = /[\S\s\-]+?\.([\S\-]+?)(\s|\#|$)/.exec(input);
-        var result;
-        if (m && m.length > 0) {
-            result = m[1];
-        }
-        else {
-            result = undefined;
-        }
-        return result;
-    };
-    var parseAttributes = function (input) {
+    let reParse = (re, str) => { let m = re.exec(str); return m && m.length > 0 ? m[1] : undefined; };
+    let parseName = (input) => { return reParse(/^([a-zA-Z0-9]+?)($|\#|\s|\n|\.)/, input); };
+    let parseId = (input) =>  { return reParse(/^\S+?\#(\S+?)[\.\s$]/, input); };
+    let parseClass = (input) => { return reParse(/[\S\s\-]+?\.([\S\-]+?)(\s|\#|$)/, input); };
+    let parseAttributes = (input) => {
         var attrre = /\s(\S+=".*?")/g;
         var attrm = attrre.exec(input);
         var keyValuePairs = [];
@@ -50,61 +20,51 @@ var $e = function (tag, content) {
             }
         }
         return keyValuePairs;
-    }
-    var parseTag = function (input) {
+    };
+    let parseTag = (input) => {
         return {
             name: parseName(input),
             id: parseId(input),
             className: parseClass(input),
             attributes: parseAttributes(input)
         };
-    }
-    var parseStack = function (input) {
-        var stackedre = /^(\S+(\s*\>\s*\S+)+)/;
-        var stackedm = stackedre.exec(input);
-        var stack = [];
+    };
+    let parseStack = (input) => {
+        let stackedre = /^(\S+(\s*\>\s*\S+)+)/;
+        let stackedm = stackedre.exec(input);
+        let stack = [];
         if (stackedm != null) {
             var tokens = stackedm[1].split('>');
-            tokens.forEach(function (x) {
-                stack.push(parseTag(x.trim()));
-            });
-        }
-        else {
-            //its a single tag name
+            tokens.forEach(x => { stack.push(parseTag(x.trim())); });
+        } else {
             stack.push(parseTag(input));
         }
         return stack;
     };
-    var addContentItem = function (targetNode, contentItem) {
-        var _asNode = function (targetParentNode, nodeContent) {
-            var contentType = typeof nodeContent;
-            var hasNodeName = nodeContent.nodeName ? true : false;
-            if (contentType === 'object' && hasNodeName) {
-                return nodeContent;
+    let addContentItem = (target, content) => {
+        let _asNode = (_target, _content) => {
+            if (typeof _content === 'object' && _content.nodeName) {
+                return _content;
             }
             else {
-                if (targetParentNode.tagName === 'UL' || targetParentNode.tagName === 'OL') {
-                    return $e('li', nodeContent);
+                if (_target.tagName === 'UL' || _target.tagName === 'OL') {
+                    return $e('li', _content);
                 }
-                else if (targetParentNode.tagName === 'select') {
-                    return $e('option', nodeContent);
+                else if (_target.tagName === 'select') {
+                    return $e('option', _content);
                 }
-                return document.createTextNode(nodeContent);
+                return document.createTextNode(_content);
             }
         }
-
-        if (contentItem !== undefined) {
-            if (Array.isArray(contentItem)) {
-                contentItem.forEach(function (item) {
-                    addContentItem(targetNode, item);
-                });
+        if (content !== undefined) {
+            if (Array.isArray(content)) {
+                content.forEach(item => addContentItem(target, item));
             }
             else {
-                targetNode.appendChild(_asNode(targetNode, contentItem));
+                target.appendChild(_asNode(target, content));
             }
         }
-
-        return targetNode;
+        return target;
     };
 
     var stack = parseStack(tag);
@@ -113,13 +73,14 @@ var $e = function (tag, content) {
         content = [].slice.apply(arguments).slice(1);
     }
 
+    let _e;
     while (stack.length) {
         var tag = stack.pop();
-        var eNode = document.createElement(tag.name);
-        if (tag.id) { eNode.setAttribute('id', id); }
-        if (tag.className) { eNode.setAttribute('class', tag.className.split('.').join(' ')); }
-        tag.attributes.forEach(function (attr) { eNode.setAttribute(attr.key, attr.value); });
-        content = addContentItem(eNode, content);
+        _e = document.createElement(tag.name);
+        if (tag.id) { _e.setAttribute('id', id); }
+        if (tag.className) { _e.setAttribute('class', tag.className.split('.').join(' ')); }
+        tag.attributes.forEach(attr => _e.setAttribute(attr.key, attr.value));
+        content = addContentItem(_e, content);
     }
-    return eNode;
+    return _e;
 };
