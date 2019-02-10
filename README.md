@@ -7,7 +7,7 @@ A compact, portable, nestable, inline HTML (or any structure) generator helper f
 
 **Usage** 
 
-```
+```javascript
     let dynamicNode = $e('h1', 'Hello Mars!');
     
     parentNode.appendChild(dynamicNode);
