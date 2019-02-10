@@ -6,7 +6,7 @@ A compact, portable, nestable, inline HTML (or any structure) generator helper f
 
 **It lets you do simple things like this:** 
 ```javascript
-    parentNode.appendChild( $e('h1>', 'Hello Mars!') );
+    parentNode.appendChild( $e('h1', 'Hello Mars!') );
 ```
 ```html
     <!-- HTML -->
