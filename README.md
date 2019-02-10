@@ -1,9 +1,8 @@
-$e() - `$e(tagname, contentItem [, Item2, Item3, ItemN]);`
+$e()
 ====
+`$e(tagname, contentItem [, Item2, Item3, ItemN]);`
 
 A compact, portable, nestable, inline HTML (or any structure) generator helper for JavaScript.
-
-
 
 **It lets you do simple things like this:** 
 ```javascript
