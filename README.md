@@ -173,11 +173,11 @@ DEEPLY NESTED ITERATION
 
 You can also create nested structures using a shorthand stack notation:
 
-$e('section > div > ul', itemArray)  //spaces are not required but are ok
+    $e('section > div > ul', itemArray)  
 
 This will generate a nested structure, with only the last element being repeated.
     
-section>div>ul is a stack that will result in the following HTML equivalent:
+'section>div>ul' is a stack that will result in the following HTML equivalent:
 
 <section>
     <div>
