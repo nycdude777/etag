@@ -18,7 +18,8 @@ A compact, portable, nestable, inline HTML (or any structure) generator helper f
     let things = ['Finish code', 'Buy milk', 'Feed cat'];
     let todo = $e('div.reminder onclick="snooze"', 
                  $e('h1', 'To do'),
-                 $e('ol', things),
+                 $e('ol', things)
+                 );
                                 
     //show the pop-up later   
 ```
