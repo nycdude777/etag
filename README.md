@@ -14,21 +14,21 @@ i.e.
 
 usage:  
 
-```
+```javascript
 let newDomNode = $e(tagname, contentItem [, Item2, Item3, ItemN]);
 ```
 
 example:
 
-```
+```javascript
 let container = document.getElementById('dynamic_content');
 container.appendChild( $e('div', 'My content') );
 ```
 
 The outer html of the returned DOM node will be equivalent to:
 
-```
-    <div>My content</div>    <- output is shown with :: prefix
+```html
+    <div>My content</div>    
 ``` 
 
 
